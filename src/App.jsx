@@ -6,10 +6,21 @@ import Button from './components/Button/Button';
 import Input from './components/Input/Input';
 
 function App() {
-  const [text, setText] = useState('');
+  const [text, setText] = useState([]);
   const [result, setResult] = useState('');
+
   const addToText = (val) => {
-    setText((prev) => [...prev, val + ' ']);
+    if (val === '=') {
+      calculateResult();
+      return;
+    }
+
+    if (val === 'C') {
+      resetInput();
+      return;
+    }
+
+    setText((prev) => [...prev, val]);
   };
 
   const calculateResult = () => {
@@ -18,7 +29,7 @@ function App() {
   };
 
   const resetInput = () => {
-    setText('');
+    setText([]);
     setResult('');
   };
 
